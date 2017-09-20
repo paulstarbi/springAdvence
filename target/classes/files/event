@@ -1,0 +1,25 @@
+{
+id: 1,
+name: "The revenant",
+rate: "HIGH",
+basePrice: 60,
+dateTime: {
+date: {
+year: 2016,
+month: 2,
+day: 5
+},
+time: {
+hour: 9,
+minute: 0,
+second: 0,
+nano: 0
+}
+},
+auditorium: {
+id: 1,
+name: "Blue hall",
+seatsNumber: 500,
+vipSeats: "25,26,27,28,29,30,31,32,33,34,35"
+}
+}

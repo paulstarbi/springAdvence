@@ -1,0 +1,6 @@
+{
+    "id" : 1,
+    "email" : "mb@epam.com",
+    "name" : "Auto",
+    "birthday" : {"year":1994,"month":4,"day":13}
+}
