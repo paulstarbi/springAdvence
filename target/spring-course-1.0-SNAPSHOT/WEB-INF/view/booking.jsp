@@ -15,7 +15,7 @@
         <h1>Booking Page</h1>
 
     <div class="left-container">
-        <form class="form-inline" method="post" action="booking/{user}/{ticket}">
+        <form class="form-inline" method="post" action="/booking/{user}/{ticket}">
             <input id="user" name="user" class="form-control mr-sm-2" type="text" placeholder="User name">
             <input id="ticket" name="ticket" class="form-control mr-sm-2" type="text" placeholder="Ticket for Event">
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Booked Ticket</button>
@@ -23,9 +23,21 @@
     </div><br/>
 
     <div class="left-container">
-            <form class="form-inline" method="post" action="ticketList">
+            <form class="form-inline" method="post" action="/pdf">
                 <button class="btn btn-outline-info my-2 my-sm-0" >Get all tickets</button>
             </form>
+    </div><br/>
+
+    <div class="left-container">
+
+        <form class="form-inline" method="post" action="/booking/eventTicket">
+            <input id="event" name="event" class="form-control mr-sm-2" type="text" placeholder="event name">
+            <input id="auditorium" name="auditorium" class="form-control mr-sm-2" type="text" placeholder="auditorium">
+            <input id="localDateTime" name="localDateTime" class="form-control mr-sm-2" type="text" placeholder="date">
+            <input id="seats" name="seats" class="form-control mr-sm-2" type="text" placeholder="seat">
+            <input id="usr" name="user" class="form-control mr-sm-2" type="text" placeholder="User name">
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Getting booked tickets for particular event </button>
+        </form>
     </div><br/>
 
     </div>

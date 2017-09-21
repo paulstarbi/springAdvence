@@ -46,6 +46,7 @@ public class DbSessionFactory {
             setProperty("hibernate.show_sql", showSql);
             setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
         }});
+        localSessionFactoryBean.setPackagesToScan(new String[] {"beans.models"});
         localSessionFactoryBean.setMappingResources("/mappings/auditorium.hbm.xml", "/mappings/event.hbm.xml",
                                                     "/mappings/ticket.hbm.xml", "/mappings/user.hbm.xml",
                                                     "/mappings/booking.hbm.xml");

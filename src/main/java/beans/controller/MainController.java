@@ -6,9 +6,11 @@ import beans.models.Rate;
 import beans.models.User;
 import beans.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.time.LocalDate;
@@ -27,8 +29,10 @@ public class MainController {
     BookingService bookingService;
 
     @Autowired
-    public MainController(AuditoriumService auditoriumService, UserService userService,
-                          EventService eventService, BookingService bookingService) {
+    public MainController(@Qualifier("auditoriumServiceImpl") AuditoriumService auditoriumService,
+                          @Qualifier("userServiceImpl") UserService userService,
+                          @Qualifier("eventServiceImpl") EventService eventService,
+                          @Qualifier("bookingServiceImpl") BookingService bookingService) {
         this.auditoriumService = auditoriumService;
         this.userService = userService;
         this.eventService = eventService;
@@ -50,13 +54,15 @@ public class MainController {
         Auditorium blueHall = auditoriumService.getByName(auditoriumName);
         Auditorium yellowHall = auditoriumService.getByName("Yellow hall");
         Auditorium redHall = auditoriumService.getByName("Red hall");
-        LocalDateTime dateOfEvent = LocalDateTime.of(LocalDate.of(2016, 2, 5), LocalTime.of(15, 45, 0));
+        LocalDateTime dateOfEvent = LocalDateTime.of(LocalDate.of(2016, 2, 5),
+                LocalTime.of(15, 45, 0));
 
         userService.register(new User(email, name, LocalDate.now()));
         userService.register(new User("laory@yandex.ru", name, LocalDate.of(1992, 4, 29)));
 
         Event event1 = eventService.create(
-                new Event(eventName, Rate.HIGH, 60, LocalDateTime.of(LocalDate.of(2016, 2, 5), LocalTime.of(9, 0, 0)),
+                new Event(eventName, Rate.HIGH, 60,
+                        LocalDateTime.of(LocalDate.of(2016, 2, 5), LocalTime.of(9, 0, 0)),
                         blueHall));
         eventService.create(new Event(eventName, Rate.HIGH, 60, dateOfEvent, blueHall));
         Event event2 = eventService.create(
@@ -72,6 +78,5 @@ public class MainController {
         model.addAttribute("added", "Dodano uzytkownikow");
         return "file";
     }
-
 
 }

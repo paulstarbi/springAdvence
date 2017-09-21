@@ -45,7 +45,7 @@ public class BookingController {
         return "booking";
     }
 
-    @RequestMapping(value = "booking/price", method = RequestMethod.POST)
+    @RequestMapping(value = "booking/eventTicket", method = RequestMethod.POST)
     public String bookedTicket(@RequestParam String event,
                                @RequestParam String auditorium,
                                @RequestParam LocalDateTime localDateTime,
@@ -57,7 +57,7 @@ public class BookingController {
         return "booking";
     }
 
-    @RequestMapping(value = "ticketList", method = RequestMethod.POST)
+    @RequestMapping(value = "booking/ticketList", method = RequestMethod.POST)
     public String bookedTicket(@RequestParam String event,
                                @RequestParam String auditorium,
                                @RequestParam LocalDateTime localDateTime,
