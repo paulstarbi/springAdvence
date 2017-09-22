@@ -1,4 +1,8 @@
 *.iml
 .idea
+<<<<<<< HEAD
 target
 /src/main/webapp/WEB-INF/view/templates/header.jsp
+=======
+target/
+>>>>>>> ed841270f6656cf7700c7faa4b2d73dc5210186a
