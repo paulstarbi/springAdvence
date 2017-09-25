@@ -2,8 +2,8 @@ package beans.models;
 
 public enum UsersRole {
 
-    REGISTERED_USER ("USER"),
-    BOOKING_MANAGER ("MANAGER");
+    REGISTERED_USER ("REGISTERED_USER"),
+    BOOKING_MANAGER ("BOOKING_MANAGER");
 
     private String role;
 

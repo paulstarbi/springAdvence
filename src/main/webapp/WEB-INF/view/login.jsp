@@ -15,18 +15,24 @@
         <h3 class="card-header">Login with Username and Password</h3>
         <div class="card-block">
             <p class="card-text">
-            <form name='f' action='login' method='POST'>
+            <form name='f' action='/login' method='POST'>
 
-                <label class="sr-only" > Username</label>
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon">UserName:</div>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                </div><br/>
+                <%--<label class="sr-only" > Username </label>--%>
+                <%--<div class="input-group mb-2 mr-sm-2 mb-sm-0">--%>
+                    <%--<div class="input-group-addon">UserName:</div>--%>
+                    <%--<input type="text" class="form-control" id="username" name="username" placeholder="Username">--%>
+                <%--</div><br/>--%>
+            <label class="sr-only" > User email </label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon">User email:</div>
+                <input type="text" class="form-control" id="mail" name="mail" placeholder="mail">
+            </div><br/>
+
+
                 <label class="sr-only">Password</label>
-
                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                     <div class="input-group-addon">Password:</div>
-                    <input type="text" class="form-control" id="password" name="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div><br/>
 
                 <button name="submit" type="submit" value="Login" class="btn btn-primary">Login</button><br/>
@@ -39,6 +45,10 @@
             </form>
             </p>
         </div>
+
+    <div class="alert alert-danger" role="alert">
+        <strong>${error}</strong>
+    </div>
     <div class="card-footer text-muted">
         @Spring Advance Welcome
     </div>

@@ -1,16 +1,12 @@
 package beans.controller;
 
-import beans.models.Auditorium;
-import beans.models.Event;
-import beans.models.Rate;
-import beans.models.User;
+import beans.models.*;
 import beans.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.time.LocalDate;
@@ -57,8 +53,20 @@ public class MainController {
         LocalDateTime dateOfEvent = LocalDateTime.of(LocalDate.of(2016, 2, 5),
                 LocalTime.of(15, 45, 0));
 
-        userService.register(new User(email, name, LocalDate.now()));
-        userService.register(new User("laory@yandex.ru", name, LocalDate.of(1992, 4, 29)));
+        User manager = new User(email, name, LocalDate.now());
+        manager.setRole((UsersRole.BOOKING_MANAGER));
+
+        User simpleUser = new User("laory@yandex.ru", name, LocalDate.of(1992, 4, 29));
+        simpleUser.setRole(UsersRole.REGISTERED_USER);
+
+        User admin = new User("admin@admin.pl", "admin", LocalDate.of(1991, 4, 29));
+        admin.setRole(UsersRole.BOOKING_MANAGER);
+        admin.setPassword("12345");
+
+
+        userService.register(manager);
+        userService.register(simpleUser);
+        userService.register(admin);
 
         Event event1 = eventService.create(
                 new Event(eventName, Rate.HIGH, 60,

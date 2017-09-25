@@ -1,5 +1,7 @@
 package beans.models;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import java.time.LocalDate;
 
 /**
@@ -14,6 +16,8 @@ public class User {
     private String    email;
     private String    name;
     private LocalDate birthday;
+    private String password;
+    private UsersRole role;
 
     public User() {
     }
@@ -23,6 +27,7 @@ public class User {
         this.email = email;
         this.name = name;
         this.birthday = birthday;
+        this.password = "123";
     }
 
     public User(String email, String name, LocalDate birthday) {
@@ -31,6 +36,22 @@ public class User {
 
     public User withId(long id) {
         return new User(id, email, name, birthday);
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UsersRole getRole() {
+        return role;
+    }
+
+    public void setRole(UsersRole role) {
+        this.role = role;
     }
 
     public long getId() {
@@ -102,4 +123,5 @@ public class User {
                ", birthday=" + birthday +
                '}';
     }
+
 }
