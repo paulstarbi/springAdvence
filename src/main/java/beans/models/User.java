@@ -1,8 +1,8 @@
 package beans.models;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,12 +12,13 @@ import java.time.LocalDate;
  */
 public class User {
 
+    static final UserProfile DEFAULT_REGISTER_USER = new UserProfile(UsersRole.REGISTERED_USER.getRole());
     private long      id;
     private String    email;
     private String    name;
     private LocalDate birthday;
-    private String password;
-    private UsersRole role;
+    private String    password;
+    private Set<UserProfile> profile = new HashSet<>();
 
     public User() {
     }
@@ -28,6 +29,7 @@ public class User {
         this.name = name;
         this.birthday = birthday;
         this.password = "123";
+        this.profile.add(DEFAULT_REGISTER_USER);
     }
 
     public User(String email, String name, LocalDate birthday) {
@@ -38,6 +40,14 @@ public class User {
         return new User(id, email, name, birthday);
     }
 
+    public Set<UserProfile> getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Set<UserProfile> profile) {
+        this.profile = profile;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -46,13 +56,6 @@ public class User {
         this.password = password;
     }
 
-    public UsersRole getRole() {
-        return role;
-    }
-
-    public void setRole(UsersRole role) {
-        this.role = role;
-    }
 
     public long getId() {
         return id;

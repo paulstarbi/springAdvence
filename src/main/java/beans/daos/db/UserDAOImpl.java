@@ -5,6 +5,7 @@ import beans.daos.UserDAO;
 import beans.models.User;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,7 @@ import java.util.Objects;
 public class UserDAOImpl extends AbstractDAO implements UserDAO {
 
     @Override
+    @Transactional
     public User create(User user) {
         UserDAO.validateUser(user);
         User byEmail = getByEmail(user.getEmail());

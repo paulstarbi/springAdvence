@@ -21,13 +21,12 @@
         <property name="birthday" type="java.time.LocalDate" column="EVENT_DATE"/>
         <property name="password" type="string" column="PASSWORD" not-null="true"/>
 
-        <property name="role" column="ROLE">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">beans.models.UsersRole</param>
-                <param name="type">12</param>
-                <param name="useNamed">true</param>
-            </type>
-        </property>
+        <set name="profile" table="USER_PROFILE" cascade="all" lazy="false">
+            <key column="ID" />
+            <many-to-many class="UserProfile" column="PROFILE_ID" />
+        </set>
+
+
     </class>
 
 </hibernate-mapping>

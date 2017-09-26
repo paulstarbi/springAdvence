@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -54,18 +56,20 @@ public class MainController {
                 LocalTime.of(15, 45, 0));
 
         User manager = new User(email, name, LocalDate.now());
-        manager.setRole((UsersRole.BOOKING_MANAGER));
 
         User simpleUser = new User("laory@yandex.ru", name, LocalDate.of(1992, 4, 29));
-        simpleUser.setRole(UsersRole.REGISTERED_USER);
-
-        User admin = new User("admin@admin.pl", "admin", LocalDate.of(1991, 4, 29));
-        admin.setRole(UsersRole.BOOKING_MANAGER);
-        admin.setPassword("12345");
+        User admin = new User("admin@admin.pl", "admin", LocalDate.of(1992, 4, 29));
+        Set<UserProfile> profiles = new HashSet<>();
+        profiles.add(new UserProfile(UsersRole.BOOKING_MANAGER.getRole()));
+        admin.setProfile(profiles);
 
 
         userService.register(manager);
+
+        System.out.println(manager.toString());
         userService.register(simpleUser);
+        System.out.println(simpleUser.toString());
+
         userService.register(admin);
 
         Event event1 = eventService.create(

@@ -3,6 +3,7 @@ package beans.controller;
 import beans.models.Ticket;
 import beans.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class SearchController {
     private UserService userService;
 
     @Autowired
-    public SearchController(UserService userService) {
+    public SearchController(@Qualifier("userServiceImpl") UserService userService) {
         this.userService = userService;
     }
 

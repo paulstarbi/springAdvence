@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service ("myUsersDatailService")
 
 public class MyUsersDatailService implements UserDetailsService {
@@ -29,7 +32,10 @@ public class MyUsersDatailService implements UserDetailsService {
             throw new UsernameNotFoundException(mail);
         }
 
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().getRole());
+        List<GrantedAuthority> authority = new ArrayList<>();
+        user.getProfile().forEach(pofile -> {
+             authority.add(new SimpleGrantedAuthority("ROLE_" + pofile.getType()));
+        });
 
         return new MyUserPrincipal(user, authority);
     }

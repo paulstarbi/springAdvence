@@ -25,7 +25,6 @@
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Role</th>
         </tr>
         </thead>
         <tbody>
@@ -35,7 +34,6 @@
                 <td><c:out value="${users.id}"/></td>
                 <td><c:out value="${users.name}"/></td>
                 <td><c:out value="${users.email}"/></td>
-                <td><c:out value="${users.role}"/></td>
             </tr>
         </c:forEach>
 

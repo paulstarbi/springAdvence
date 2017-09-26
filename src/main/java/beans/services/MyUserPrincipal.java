@@ -4,23 +4,22 @@ import beans.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 public class MyUserPrincipal implements UserDetails {
 
     private final User user;
-    private final GrantedAuthority authorities;
+    private final List<GrantedAuthority> authorities;
 
-    public MyUserPrincipal(User user, GrantedAuthority authority) {
+    public MyUserPrincipal(User user, List<GrantedAuthority> authority) {
         this.user =user;
         this.authorities = authority;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(authorities);
+        return authorities;
     }
 
     @Override
