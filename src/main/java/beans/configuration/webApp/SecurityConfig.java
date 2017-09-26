@@ -31,8 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication().withUser("admin")
-//                .password("123").roles(REGISTERED_USER.getRole(), BOOKING_MANAGER.getRole());
         auth.userDetailsService(userDetailsService);
         auth.authenticationProvider(authenticationProvider());
     }
@@ -60,17 +58,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/file").access("hasRole('BOOKING_MANAGER')")
+                .antMatchers("/file").access("hasRole('REGISTERED_USER')")
+                .antMatchers("/booking*").access("hasRole('BOOKING_MANAGER')")
                 .antMatchers("/login*").anonymous()
                 .anyRequest().access("hasRole('BOOKING_MANAGER') or hasRole('REGISTERED_USER')").and()
                 .rememberMe().tokenValiditySeconds(3600).and()
-                .formLogin()
-                .loginPage("/login").usernameParameter("mail").passwordParameter("password")
-                .defaultSuccessUrl("/").failureUrl("/login?error=true")
-                .and()
-                .logout().logoutSuccessUrl("/login")
-                .and()
+                .formLogin().loginPage("/login").usernameParameter("mail").passwordParameter("password")
+                .defaultSuccessUrl("/").failureUrl("/login?error=true").and()
+                .logout().logoutSuccessUrl("/login").and()
                 .csrf().disable();
     }
-
 }
